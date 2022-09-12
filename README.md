@@ -1,19 +1,12 @@
-# Stable Diffusion Cog model
+# Japanese Stable Diffusion Cog model
 
-This is an implementation of the [Diffusers Stable Diffusion 1.4](https://huggingface.co/CompVis/stable-diffusion-v1-4) as a Cog model. [Cog packages machine learning models as standard containers.](https://github.com/replicate/cog)
+### Quickstart
+```
+sudo curl -o /usr/local/bin/cog -L https://github.com/replicate/cog/releases/latest/download/cog_`uname -s`_`uname -m`
+sudo chmod +x /usr/local/bin/cog
+sudo apt-get install git-lfs
+git lfs install
+git clone https://huggingface.co/rinna/japanese-stable-diffusion
+cog predict -i prompt="サラリーマン 油絵"
+```
 
-First, download the pre-trained weights [with your Hugging Face auth token](https://huggingface.co/settings/tokens):
-
-    cog run script/download-weights <your-hugging-face-auth-token>
-
-Then, you can run predictions:
-
-    cog predict -i prompt="monkey scuba diving"
-
-Or, build a Docker image:
-
-    cog build
-
-Or, [push it to Replicate](https://replicate.com/docs/guides/push-a-model):
-
-    cog push r8.im/...

@@ -7,12 +7,7 @@ from diffusers import PNDMScheduler, LMSDiscreteScheduler
 from PIL import Image
 from cog import BasePredictor, Input, Path
 
-from image_to_image import (
-    StableDiffusionImg2ImgPipeline,
-    preprocess_init_image,
-    preprocess_mask,
-)
-
+from japanese_stable_diffusion import JapaneseStableDiffusionPipeline
 
 MODEL_CACHE = "diffusers-cache"
 
@@ -21,11 +16,9 @@ class Predictor(BasePredictor):
     def setup(self):
         """Load the model into memory to make running multiple predictions efficient"""
         print("Loading pipeline...")
-        scheduler = PNDMScheduler(
-            beta_start=0.00085, beta_end=0.012, beta_schedule="scaled_linear"
-        )
-        self.pipe = StableDiffusionImg2ImgPipeline.from_pretrained(
-            "CompVis/stable-diffusion-v1-4",
+        scheduler = LMSDiscreteScheduler(beta_start=0.00085, beta_end=0.012, beta_schedule="scaled_linear", num_train_timesteps=1000)
+        self.pipe = JapaneseStableDiffusionPipeline.from_pretrained(
+            "./japanese-stable-diffusion",
             scheduler=scheduler,
             revision="fp16",
             torch_dtype=torch.float16,
