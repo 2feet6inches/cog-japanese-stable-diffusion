@@ -10,3 +10,4 @@ git clone https://huggingface.co/rinna/japanese-stable-diffusion
 cog predict -i prompt="サラリーマン 油絵"
 ```
 
+![サラリーマン 油絵](output.0.png "サラリーマン 油絵")
